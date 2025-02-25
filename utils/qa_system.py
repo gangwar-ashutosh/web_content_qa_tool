@@ -17,11 +17,12 @@ os.environ['GROQ_API_KEY'] = st.secrets["GROQ_API_KEY"]
 
 # ------------------------ Custom Prompt Template ------------------------
 custom_prompt = """
-You are a helpful assistant tasked with providing answers based only on the given context.
+You are a helpful assistant tasked with providing answers of the questions asked by the user 
+based on the given context provided to you.
 
-- If the answer is not in the context, respond with "I don't know." Do not create or assume information.  
+- If the answer of the question is not mentioned in the context, deny answering the question. Do not add, create or assume information yourself.  
 - Keep your response concise, with a maximum of four sentences.  
-- Stick strictly to the provided context—do not add extra details.  
+- Stick strictly to the provided context and do not add extra details.  
 - Do not generate any content that is offensive or irrelevant.
 
 Context:  
