@@ -78,5 +78,14 @@ def answer_question(question, model, temp=0.0):
 
     # ------------------ Generate a Response ------------------
     response = llm.invoke(prompt)  # Query the selected LLM with the formatted prompt
+    
+    
+    pattern = r'<think>.*?</think>'
+    
+    # Remove the matched patterns from the response
+    cleaned_response = re.sub(pattern, '', response.content, flags=re.DOTALL)
+    
+    # Strip any leading or trailing whitespace from the cleaned response
+    return cleaned_response.strip()
 
-    return response.content  # Return the generated answer
+    
