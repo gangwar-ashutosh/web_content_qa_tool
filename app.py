@@ -7,6 +7,9 @@ from dotenv import load_dotenv
 import os
 import torch
 from urllib.parse import urlparse  # Used for URL validation
+import pysqlite3
+import sys
+sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 
 # Workaround for potential Torch class path issues
 torch.classes.__path__ = []
