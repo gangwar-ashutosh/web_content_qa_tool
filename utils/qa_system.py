@@ -49,17 +49,24 @@ def answer_question(question, model, temp=0.0):
 
     # ------------------ Initialize the Groq Chat Model ------------------
     if model == "Mistral":
-        llm = ChatGroq(
-            model="mixtral-8x7b-32768",  # Mistral-based model
-            temperature=temp  
-        )
-    elif model == "LLaMA":
-        llm = ChatGroq(
-            model="llama-3.2-1b-preview",  # LLaMA-based model
-            temperature=temp
-        )
+        try:
+            llm = ChatGroq(
+                model="mixtral-8x7b-32768",  # Mistral-based model
+                temperature=temp  
+            )
+        except Exception as e:
+             raise RuntimeError(f"Failed to initialize ChatGroq with model '{model}': {e}")    
+    elif model == "DeepSeek":
+
+        try: 
+            llm = ChatGroq(
+                model="deepseek-r1-distill-llama-70b",  # LLaMA-based model
+                temperature=temp
+            )
+        except Exception as e:
+            raise RuntimeError(f"Failed to initialize ChatGroq with model '{model}': {e}")   
     else:
-        raise ValueError("Invalid model name. Choose either 'Mistral' or 'LLaMA'.")
+        raise ValueError("Invalid model name. Choose either 'Mistral' or 'DeepSeek'.")
 
     # ------------------ Retrieve Relevant Documents ------------------
     retrieved_docs = vector_store.similarity_search(question, k=5)  # Fetch top 5 relevant documents

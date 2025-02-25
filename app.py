@@ -34,7 +34,7 @@ st.sidebar.header("Configuration")
 # Model selection (Default: Mistral)
 model = st.sidebar.selectbox(
     "Select LLM:",
-    ("Mistral", "LLaMA"),
+    ("DeepSeek","Mistral"),
     index=0  # Default to "Mistral" (0-based index)
 )
 
