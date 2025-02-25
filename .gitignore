@@ -1,2 +1,6 @@
 .env
 /myenv
+check.ipynb
+/data
+/utils/__pycache__
+/__pycache__
