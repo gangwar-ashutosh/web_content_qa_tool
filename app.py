@@ -66,10 +66,16 @@ if st.button("Run"):
     if not urls:
         st.error("Please enter at least one URL.")
     else:
-        # Filter valid URLs
-        valid_urls_list = [url for url in urls if all(urlparse(url).scheme and urlparse(url).netloc)]
+        ## find valid URLS list
+        valid_urls_list=[]
 
-        if valid_urls_list:
+        for url in urls:
+         # Validate URL format
+          result = urlparse(url)
+          if all([result.scheme, result.netloc]):
+             valid_urls_list.append(url)
+
+        if len(valid_urls_list>=1):
             st.session_state['chat_history'] = []  # Reset chat history
 
             with st.spinner("Fetching and Processing Content..."):
