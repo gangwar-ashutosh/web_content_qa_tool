@@ -50,6 +50,10 @@ temp = st.sidebar.slider(
 
 # ------------------------ Main Application ------------------------
 st.title("Web Content Q&A Tool")
+st.write(
+    "This application allows users to input URLs and pose questions based on the content of those pages. "
+    "To get started, simply enter a URL(s) in the input field and let the tool handle the rest."
+)
 
 # Input fields for URLs
 url1 = st.text_input("Enter URL 1:")

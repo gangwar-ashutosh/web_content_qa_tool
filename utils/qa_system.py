@@ -5,6 +5,7 @@ from dotenv import dotenv_values  # Load environment variables from .env file
 from langchain_groq import ChatGroq  # Groq API for LLM inference
 import os
 import streamlit as st
+import re
 
 
 # Load environment variables from .env file, when running locally
