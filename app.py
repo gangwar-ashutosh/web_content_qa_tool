@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 import os
 import torch
 from urllib.parse import urlparse  # Used for URL validation
+import validators
 
 
 # Workaround for potential Torch class path issues
@@ -70,10 +71,18 @@ if st.button("Run"):
         valid_urls_list=[]
 
         for url in urls:
-         # Validate URL format
-          result = urlparse(url)
-          if all([result.scheme, result.netloc]):
-             valid_urls_list.append(url)
+           # Prepend 'http://' if no scheme is present
+           if not urlparse(url).scheme:
+               url = 'http://' + url
+          # Validate the URL
+           if validators.url(url):
+                  valid_urls_list.append(url)
+
+        # for url in urls:
+        #  # Validate URL format
+        #   result = urlparse(url)
+        #   if all([result.scheme, result.netloc]):
+        #      valid_urls_list.append(url)
 
         if len(valid_urls_list) >=1 :
             st.session_state['chat_history'] = []  # Reset chat history
