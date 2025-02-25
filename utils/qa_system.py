@@ -4,10 +4,15 @@ from utils.content_processor import vector_store  # Import vector store for simi
 from dotenv import dotenv_values  # Load environment variables from .env file
 from langchain_groq import ChatGroq  # Groq API for LLM inference
 import os
+import streamlit as st
 
-# Load environment variables from .env file
-env_vars = dotenv_values('.env')
-os.environ['GROQ_API_KEY'] = env_vars.get("GROQ_API_KEY")  # Set API key for authentication
+
+# Load environment variables from .env file, when running locally
+# env_vars = dotenv_values('.env')
+# os.environ['GROQ_API_KEY'] = env_vars.get("GROQ_API_KEY")  # Set API key for authentication
+
+## Import key from streamlit secret file, when deployed to streamlit
+os.environ['GROQ_API_KEY'] = st.secrets["GROQ_API_KEY"]
 
 # ------------------------ Custom Prompt Template ------------------------
 custom_prompt = """

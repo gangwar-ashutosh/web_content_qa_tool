@@ -1,3 +1,6 @@
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 from dotenv import dotenv_values
 from utils.content_processor import fetch_and_process  # Function to fetch & process web content
@@ -7,9 +10,7 @@ from dotenv import load_dotenv
 import os
 import torch
 from urllib.parse import urlparse  # Used for URL validation
-import pysqlite3
-import sys
-sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
+
 
 # Workaround for potential Torch class path issues
 torch.classes.__path__ = []
