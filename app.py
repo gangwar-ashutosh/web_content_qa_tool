@@ -75,7 +75,7 @@ if st.button("Run"):
           if all([result.scheme, result.netloc]):
              valid_urls_list.append(url)
 
-        if len(valid_urls_list>=1):
+        if len(valid_urls_list) >=1 :
             st.session_state['chat_history'] = []  # Reset chat history
 
             with st.spinner("Fetching and Processing Content..."):
